@@ -1,0 +1,43 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "allowJs": true,
+    "target": "es2017",
+    "module": "es2020",
+    "lib": [
+      "es2018",
+      "dom",
+      "dom.iterable"
+    ],
+    "paths": {
+      "@core/*": ["src/app/core/*"],
+      "@authentication/*": ["src/app/authentication/*"],
+      "@shared/*": ["src/app/shared/*"],
+      "@component/*": ["src/app/component/*"],
+      "@layout/*": ["src/app/layout/*"],
+      "@env/*": ["src/environments/*"],
+      // "tslib" : ["./node_modules/tslib/tslib.d.ts"]
+    }
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
+}
+

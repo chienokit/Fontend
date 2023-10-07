@@ -1,0 +1,34 @@
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {finalize} from 'rxjs/operators';
+import {LoadingService} from '@shared/service/helpers/loading.service';
+import {Observable} from 'rxjs';
+
+@Injectable()
+export class LoadingInterceptor implements HttpInterceptor {
+
+  private count = 0;
+
+  constructor(private loadingService: LoadingService) {
+  }
+
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    const isLoading = JSON.parse(request.headers.get('isLoading') as string);
+    if (isLoading) {
+      this.count++;
+      this.loadingService.show();
+
+      // hide spinner when count = 0
+      return next.handle(request).pipe(
+        finalize(() => {
+          this.count--;
+          if (this.count === 0) {
+            this.loadingService.hide();
+          }
+        })
+      );
+    }
+    request.headers.delete('isLoading');
+    return next.handle(request);
+  }
+}
